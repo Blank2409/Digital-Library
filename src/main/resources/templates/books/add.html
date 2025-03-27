@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Book</title>
+    <style>.error { color: red; }</style>
+</head>
+<body>
+    <h1>Add New Book</h1>
+    
+    <form th:action="@{/books/add}" th:object="${book}" method="post">
+        <div>
+            <label>ID:</label>
+            <input type="number" th:field="*{id}"/>
+            <span th:if="${#fields.hasErrors('id')}" 
+                  th:errors="*{id}" 
+                  class="error"></span>
+        </div>
+
+        <div>
+            <label>Title:</label>
+            <input type="text" th:field="*{title}"/>
+            <span th:if="${#fields.hasErrors('title')}" 
+                  th:errors="*{title}" 
+                  class="error"></span>
+        </div>
+
+        <div>
+            <label>Author:</label>
+            <input type="text" th:field="*{author}"/>
+            <span th:if="${#fields.hasErrors('author')}" 
+                  th:errors="*{author}" 
+                  class="error"></span>
+        </div>
+
+        <div>
+            <label>Genre:</label>
+            <input type="text" th:field="*{genre}"/>
+            <span th:if="${#fields.hasErrors('genre')}" 
+                  th:errors="*{genre}" 
+                  class="error"></span>
+        </div>
+
+        <div>
+            <label>Availability:</label>
+            <select th:field="*{availability}">
+                <option value="Available">Available</option>
+                <option value="Checked Out">Checked Out</option>
+            </select>
+        </div>
+
+        <button type="submit">Add Book</button>
+    </form>
+</body>
+</html>
